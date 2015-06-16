@@ -5,11 +5,22 @@ permalink:           pretty
 relative_permalinks: true
 
 # Setup
-title:               Poole
-tagline:             The Jekyll Butler
-url:                 http://getpoole.com
-paginate:            1
-baseurl:             ""
+title:               Dancy's open dev footsteps
+url:                 http://swingseagull.github.io/
+baseurl: 			 ""
+encoding:			 utf-8
+name: 				 Dancy Xia
+avatar: 			 https://avatars.githubusercontent.com/u/5642994?v=3
+#pygments/rouge 
+highlighter: 		 pygments
+markdown: kramdown
+permalink: /:title/
+
+#footer-links
+footer-links:
+  linkedin: dancyxia
+  github: swingseagull
+  twitter: swingseagull1
 
 # Assets
 #
@@ -20,11 +31,23 @@ sass:
 
 # About/contact
 author:
-  name:              Mark Otto
-  url:               https://twitter.com/mdo
-  email:             markdotto@gmail.com
+  name:              Dancy Xia
+  url:               https://twitter.com/swingseagull1
+  
 
 # Custom vars
 version:             1.0.0
 github:
-  repo:              https://github.com/poole/poole
+  repo:              https://github.com/swingseagull.github.io
+
+  
+# Use the following plug-ins
+gems:
+  - jekyll-sitemap # Create a sitemap using the official Jekyll sitemap gem
+
+# Exclude these files from your production _site
+exclude:
+    - Gemfile
+    - Gemfile.lock
+    - LICENSE
+    - README.md

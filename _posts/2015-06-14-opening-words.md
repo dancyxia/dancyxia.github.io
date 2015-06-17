@@ -21,7 +21,24 @@ This application is based on the graph algorithms that I read the other day. The
 * The shape and the colour of the vertex is flexible. 
 * The edges are added by the user through dragging between two vertexes. 
 
+### A few words about jekyll
 
+Thanks to google, github and the selfless authors who wrote the useful guides. Because of them I can have published the blog fast. 
+
+BTW, I took some time to figuarre out how to get my github information, such as avatar link, my id.... It can be retrieved with [this](https://api.github.com/users/swingseagull) link 
+
+
+**References:**
+
+[1] http://jekyllrb.com/docs/windows/#installation
+
+[2] http://www.smashingmagazine.com/2014/08/01/build-blog-jekyll-github-pages/
+
+[3] http://jekyllrb.com/docs/quickstart/
+
+[4] http://joshualande.com/jekyll-github-pages-poole/
+
+[5] http://www.smashingmagazine.com/2014/08/01/build-blog-jekyll-github-pages/
 
 
 

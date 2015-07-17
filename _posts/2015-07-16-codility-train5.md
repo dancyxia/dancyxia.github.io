@@ -6,6 +6,10 @@ tags: [algorithm]
 ---
 This is the exercises for lesson 5. It's easy. I only did one exercise. 
 
+**Done**: Exercise 2
+
+**To-Be-Done**: Exercise 1, 3, 4
+
 ### Exercise 1: [Nesting](https://codility.com/demo/take-sample-test/nesting/) (Easy)
 Determine whether given string of parentheses is properly nested. 
 {%  highlight java linenos  %}

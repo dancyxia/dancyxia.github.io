@@ -5,7 +5,9 @@ category: job interview
 tags: [algorithm]
 ---
 
-I went for three coding interview. Succeeded in one and failed in two. The failure was because I was not fast enough to finish the coding. I have another coding interview to go. To make myself to be more efficient, I tried to finish all exercises from codility. Hope it helped the job interview!
+I went for three coding interview. Succeeded in one and failed in two. The failure was because I was not fast enough to finish the coding. I have another coding interview to go. To make myself to be more efficient, I tried to finish the exercises from codility as much as possible before the next interview. Hope it helped landing the job!
+
+**Done**: Exercise 1 - 3
 
 ### Exercise 1: [TapeEquilibrium](https://codility.com/demo/take-sample-test/tape_equilibrium/) (Easy) 
  Minimize the value |(A[0] + ... + A[P-1]) - (A[P] + ... + A[N-1])|. 

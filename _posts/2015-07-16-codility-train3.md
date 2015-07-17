@@ -6,6 +6,10 @@ tags: [algorithm]
 ---
 This is the exercises for the third lesson. I finished part of it.
 
+**Done**: Exercise 3
+
+**To-Be-Done**: Exercise 1 - 2
+
 ### Exercise 1: CountDiv (Easy)[TO BE FINISHED] 
 
 Compute number of integers divisible by k in range [a..b]. 

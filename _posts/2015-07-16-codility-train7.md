@@ -6,6 +6,8 @@ tags: [algorithm]
 ---
 This is the exercises for lesson 7. 
 
+**Done**: Exercise 1 - 3
+
 ### Exercise 1: [MaxSliceSum](https://codility.com/demo/take-sample-test/max_slice_sum/) (Easy)
 Find a maximum sum of a compact subsequence of array elements. 
 {%  highlight java linenos  %}

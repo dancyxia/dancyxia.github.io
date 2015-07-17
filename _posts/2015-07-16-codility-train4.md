@@ -6,6 +6,8 @@ tags: [algorithm]
 ---
 This is the exercises for lesson 4. 
 
+**Done**: Exercise 1 - 4
+
 ### Exercise 1: [Triangle](https://codility.com/demo/take-sample-test/triangle/)(Easy)
 
 Determine whether a triangle can be built from a given set of edges.

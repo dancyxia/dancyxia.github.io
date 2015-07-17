@@ -6,6 +6,11 @@ tags: [algorithm]
 ---
 This is the exercises for lesson 6. There're two exercises and I only did one. 
 
+**Done**: Exercise 2
+
+**To-Be-Done**: Exercise 1
+
+
 ### Exercise 1: [Dominator](https://codility.com/demo/take-sample-test/dominator/) (Easy)
 Find an index of an array such that its value occurs at more than half of indices in the array. 
 {%  highlight java linenos  %}

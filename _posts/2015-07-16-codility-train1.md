@@ -7,10 +7,8 @@ tags: [algorithm]
 
 I went for three coding interview. Succeeded in one and failed in two. The failure was because I was not fast enough to finish the coding. I have another coding interview to go. To make myself to be more efficient, I tried to finish all exercises from codility. Hope it helped the job interview!
 
-### Exercise 1: TapeEquilibrium (Easy) 
+### Exercise 1: [TapeEquilibrium](https://codility.com/demo/take-sample-test/tape_equilibrium/) (Easy) 
  Minimize the value |(A[0] + ... + A[P-1]) - (A[P] + ... + A[N-1])|. 
-
-[detail description](https://codility.com/demo/take-sample-test/tape_equilibrium/)
 
 This is straightforward. Be careful about the corner case.
 
@@ -41,10 +39,8 @@ class Solution {
 
 {% endhighlight %}
 
-### Exercise 2: FrogJmp (Easy) 
+### Exercise 2: [FrogJmp](https://codility.com/demo/take-sample-test/frog_jmp/) (Easy) 
 Count minimal number of jumps from position X to Y. 
-
-[detail description](https://codility.com/demo/take-sample-test/frog_jmp/)
 
 {%  highlight java linenos  %}
 class Solution {
@@ -57,10 +53,8 @@ class Solution {
 {% endhighlight %}
 
 
-### Exercise 3: PermMissingElem (Easy) 
+### Exercise 3: [PermMissingElem](https://codility.com/demo/take-sample-test/perm_missing_elem/) (Easy) 
 Find the missing element in a given permutation
-
-[detail description](https://codility.com/demo/take-sample-test/perm_missing_elem/)
 
 **Solution**:
 

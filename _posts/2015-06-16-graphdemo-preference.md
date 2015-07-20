@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Persist the configuration
-category: graph
+category: android-app-graphgen
 tags: [algorithm, android]
 ---
 

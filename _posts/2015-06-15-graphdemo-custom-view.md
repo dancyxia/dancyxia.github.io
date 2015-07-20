@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Make a custom view - GraphView
-category: graph
+category: android-app-graphdemo
 tags: [algorithm, android]
 ---
 ### Design consideration

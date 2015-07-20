@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Calendar Control - Custom View Group
-category: android-development
+category: android-app-calendarcontrol
 tags: [calendarcontrol]
 ---
 

@@ -2,8 +2,8 @@
 layout: post
 comments: true
 title: Opening Words
-category: graph
-tags: [algorithm, android]
+category: android-app-graphdemo
+tags: [android]
 ---
 ### Close of the office
 **Finally the office is closed**. People asked me how I felt. I don't know how to answer. It's just complicated. A little relief? a little lost? Maybe a little happiness. I decide not to make a hurry search on jobs. During the past two decades, I was always running for various new technologies, trying different areas of development. Now it was time to take a break, enjoy some good readings, reflect on the work I have done and then get a new start!

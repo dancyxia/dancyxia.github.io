@@ -17,11 +17,11 @@
 					Categories
 				  </div>
 				  
-				  <a href="javascript:;" class="categories-list-item" cate="All">
-					All<span class="my-badge"> {{site.categories | size}}</span>
+				  <a href="/" class="categories-list-item" cate="All">
+					All<span class="my-badge"> {{site.posts | size}}</span>
 				  </a>
 				  {% for category in site.categories %}
-					<a href="javascript:;" class="categories-list-item" cate="{{ category | first }}">
+					<a href="/?cat={{ category | first }}" class="categories-list-item" cate="{{ category | first }}">
 					  {{ category | first }} <span class="my-badge">{{ category | last | size }}</span>
 					</a>
 				  {% endfor %}
@@ -38,7 +38,7 @@
 					{% assign prevmonth = post.previous.date | date: "%B %Y" %}
 					{% assign counter = counter | plus: 1 %}
 					{% if thismonth != prevmonth %}
-						<a href="javascript:;" class="archive-list-item" date="{{ post.date | date:"%Y%m" }}">{{ thismonth }} <span class="my-badge">{{ counter }}</span></a>
+						<a href="{{ site.archive-link }}/?date={{ post.date | date:'%Y%m' }}" class="archive-list-item" }}">{{ thismonth }} <span class="my-badge">{{ counter }}</span></a>
 						{% assign counter = 0 %}
 					{% endif %}
 				{% endfor %}

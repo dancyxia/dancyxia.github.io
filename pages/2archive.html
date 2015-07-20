@@ -1,8 +1,7 @@
 ---
-layout: page
+layout: default
 title: Archive
 icon: glyphicon-file
-comments: false
 ---
 <div class="post-area">
 
@@ -13,7 +12,7 @@ comments: false
     {% capture next_month %}{{ post.previous.date | date: "%B" }}{% endcapture %}
   
     {% if forloop.first %}
-	<div post-date="{{ post.date | date: '%Y%m' }}">
+	<div post-date="{{ post.date | date: '%Y%m' }}" name="{{ post.date | date: '%Y%m' }}">
       <legend id="{{this_year}}-{{this_month}}" >{{this_month}}, {{this_year}}</legend>
       <ul>
     {% endif %}

@@ -196,8 +196,8 @@ footer{
 	min-height: 50px;
 	line-height: 50px;
 	margin-top: 80px;
-	background: #3f4850;
-	color: #aaa;
+	background: #377bc9;;
+	color: #ffffff;
 	text-align: center;
 
 	-webkit-box-shadow: 0 -2px 4px rgba(0,0,0,0.5);
@@ -205,9 +205,9 @@ footer{
 	-o-box-shadow: 0 -2px 4px rgba(0,0,0,0.5);
 	box-shadow: 0 -2px 4px rgba(0,0,0,0.5);
 }
-footer a:link {color: #aaa}		/* 未访问的链接 */
+footer a:link {color: #fff}		/* 未访问的链接 */
 footer a:visited {color: #888}	/* 已访问的链接 */
-footer a:hover {color: #bbb;text-decoration: none;}	/* 鼠标移动到链接上 */
+footer a:hover {color: #9cc3f0;text-decoration: none;}	/* 鼠标移动到链接上 */
 footer a:active {color: #bbb}	/* 选定的链接 */
 footer .point{
 	margin: 0 8px;
@@ -452,14 +452,23 @@ blockquote:last-child {
 	margin: 10px 30px 0px 20px;
 	line-height: 20px;
 	display: block;
-	color: #ffffff !important
+	color: #ffffff
 }
 
+.site-info small {
+	color: #9cc3f0;
+	height: 15px;
+	width: 15px;
+}
 
-
-#myAffix .affix{
-	top:-20px;
-	bottom: 0px;
+.rss {
+	background-image: url("/images/rss-white.png");
+	position: relative;
+	top: 1px;
+	display: inline-block;
+	line-height: 1;	
+	width: 15px;
+	height: 15px;
 }
 
 @media screen and (max-width: 1200px){

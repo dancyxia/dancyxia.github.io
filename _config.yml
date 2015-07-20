@@ -2,8 +2,8 @@
 # Permalinks
 #
 # Use of `relative_permalinks` ensures post links from the index work properly.
-permalink:           pretty
-relative_permalinks: true
+#permalink:           pretty
+#relative_permalinks: true
 
 # Setup
 title:               Dancy's open dev footsteps
@@ -12,18 +12,16 @@ baseurl: 			 ""
 encoding:			 utf-8
 name: 				 Dancy Xia
 avatar: 			 https://avatars.githubusercontent.com/u/5642994?v=3
-description: 		 I am happy because I have dream
+description: 		 I am happy as I have dream
+archive-link: /pages/2archive.html
+
 # Build settings
 github_username:  swingseagull
-#pygments/rouge 
 highlighter: 		 pygments
 markdown: kramdown
 permalink: /:year/:month/:day/:title/
 
-#pygments/rouge 
-highlighter: 		 pygments
-markdown: kramdown
-permalink: /:title/
+
 
 #footer-links
 footer-links:
@@ -37,17 +35,6 @@ footer-links:
 sass:
   sass_dir:          _sass
   style:            :compressed
-
-# About/contact
-author:
-  name:              Dancy Xia
-  url:               https://twitter.com/swingseagull1
-  
-
-# Custom vars
-version:             1.0.0
-github:
-  repo:              https://github.com/swingseagull.github.io
 
 #footer-links
 footer-links:
@@ -64,6 +51,4 @@ exclude:
     - Gemfile
     - Gemfile.lock
     - LICENSE
-    - about.md
     - README.md
-    - 404.html

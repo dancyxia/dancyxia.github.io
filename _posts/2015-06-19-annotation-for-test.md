@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Cusom Annotation
-category: job interview
+category: job-interview
 tags: [algorithm, annotation]
 ---
 

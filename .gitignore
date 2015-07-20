@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+_site
+.sass-cache
+=======
 # Ignore docs files
 _gh_pages
 _site
@@ -40,3 +44,4 @@ validation-report.json
 
 # Folders to ignore
 node_modules
+>>>>>>> 5089637a1a0a30a9939d5ebacd83c57a2177bfd2

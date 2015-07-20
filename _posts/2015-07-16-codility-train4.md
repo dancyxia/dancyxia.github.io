@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Codility Training Exercise 4 - Sorting
-category: job interview
+category: job-interview
 tags: [algorithm]
 ---
 This is the exercises for lesson 4. 

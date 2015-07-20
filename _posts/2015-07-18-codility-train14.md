@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Codility Training Exercise 14 - Greedy algorithms
-category: job interview
+category: job-interview
 tags: [algorithm]
 ---
 This is the exercises for lesson 14. I didn't do exercise 13. 

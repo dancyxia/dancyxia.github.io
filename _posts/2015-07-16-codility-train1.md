@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Codility Training Exercise 1 - Time Complexity
-category: job interview
+category: job-interview
 tags: [algorithm]
 ---
 

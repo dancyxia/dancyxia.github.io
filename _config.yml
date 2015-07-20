@@ -1,3 +1,4 @@
+# Site settings
 # Permalinks
 #
 # Use of `relative_permalinks` ensures post links from the index work properly.
@@ -11,6 +12,14 @@ baseurl: 			 ""
 encoding:			 utf-8
 name: 				 Dancy Xia
 avatar: 			 https://avatars.githubusercontent.com/u/5642994?v=3
+description: 		 I am happy because I have dream
+# Build settings
+github_username:  swingseagull
+#pygments/rouge 
+highlighter: 		 pygments
+markdown: kramdown
+permalink: /:year/:month/:day/:title/
+
 #pygments/rouge 
 highlighter: 		 pygments
 markdown: kramdown
@@ -40,6 +49,11 @@ version:             1.0.0
 github:
   repo:              https://github.com/swingseagull.github.io
 
+#footer-links
+footer-links:
+  linkedin: dancyxia
+  github: swingseagull
+  twitter: swingseagull1
   
 # Use the following plug-ins
 gems:

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Calendar Control Widget - Month View Transition
-category: android development
+category: android-development
 tags: [calendarcontrol]
 ---
 

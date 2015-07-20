@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Codility Training Exercise 3 - Prefix Sums
-category: job interview
+category: job-interview
 tags: [algorithm]
 ---
 This is the exercises for the third lesson. I finished part of it.

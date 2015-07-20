@@ -1,0 +1,26 @@
+<header>
+
+<!-- navbar -->
+  <nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+         <img class="site-avatar" src="{{ site.avatar }}" />
+		 <div class="site-info">
+			<h3 class="masthead-title">
+			  <div>{{ site.title }}</div>
+			  <small>{{ site.description }}</small>
+			</h3>
+		</div>
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+      <ul class="nav navbar-nav navbar-right">
+		{% include mylink.html %}
+        {% for p in site.pages %}
+           <li><a href="{{ p.url | prepend: site.baseurl }}"><span class="glyphicon {{ p.icon }}"></span> {{ p.title }}</a></li>
+        {% endfor %}
+      </ul>
+  </div><!-- /.container-fluid -->
+</nav>
+
+</header>

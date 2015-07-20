@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Codility Training Exercise 2-Counting Elements
-category: job interview
+category: job-interview
 tags: [algorithm]
 ---
 [TODO]

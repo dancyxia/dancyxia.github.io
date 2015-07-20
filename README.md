@@ -1,3 +1,9 @@
+<<<<<<< HEAD
+# Read Me
+
+I created this blog to record my online development life. The blog is based on Jekyll. I referred to many templates for the design. I'd specially thank [Gaohaoyang](https://github.com/Gaohaoyang/gaohaoyang.github.io). I learned many skill and got some idea by studying his theme. Actually I refactored my originally blog based on his theme.
+
+=======
 # Poole
 
 *The Strange Case of Dr. Jekyll and Mr. Hyde* tells the story of a lawyer investigating the connection of two persons, Dr. Henry Jekyll and Mr. Edward Hyde. Chief among the novel's supporting cast is a man by the name of Mr. Poole, Dr. Jekyll's loyal butler.
@@ -118,3 +124,4 @@ Poole has two branches, but only one is used for active development.
 Open sourced under the [MIT license](LICENSE.md).
 
 <3
+>>>>>>> 5089637a1a0a30a9939d5ebacd83c57a2177bfd2

@@ -1,5 +1,6 @@
 ---
 layout: post
+comments: true
 title: Opening Words
 category: graph
 tags: [algorithm, android]

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Codility Training Exercise 6 - Leader
-category: job interview
+category: job-interview
 tags: [algorithm]
 ---
 This is the exercises for lesson 6. There're two exercises and I only did one. 

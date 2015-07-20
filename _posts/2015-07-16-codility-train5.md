@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Codility Training Exercise 5 - Stack and Queue
-category: job interview
+category: job-interview
 tags: [algorithm]
 ---
 This is the exercises for lesson 5. It's easy. I only did one exercise. 

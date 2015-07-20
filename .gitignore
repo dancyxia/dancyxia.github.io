@@ -45,3 +45,12 @@ validation-report.json
 # Folders to ignore
 node_modules
 >>>>>>> 5089637a1a0a30a9939d5ebacd83c57a2177bfd2
+/images/canvas_bg.jpg
+/images/social-38-rss-trans-15.png
+/images/social-38-rss-trans.png
+/images/social-38-rss-trans.xcf
+/images/social-38-rss.png
+/static/css/bootstrap.icon-large.css
+/static/css/bootstrap.icon-large.min.css
+/static/glyphicons.png
+/static/img/glyphicons.png

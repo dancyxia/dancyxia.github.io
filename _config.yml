@@ -13,8 +13,7 @@ encoding:			 utf-8
 name: 				 Dancy Xia
 avatar: 			 https://avatars.githubusercontent.com/u/5642994?v=3
 description: 		 I am happy as I have dream
-archive-link: /pages/2archive.html
-
+archive-link: /pages/2archive
 # Build settings
 github_username:  swingseagull
 highlighter: 		 pygments

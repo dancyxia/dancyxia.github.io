@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Maintain the state of fragments
-category: android-app-graphgen
+category: android-app-graphdemo
 tags: [algorithm, android, fragment]
 ---
 

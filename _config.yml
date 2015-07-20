@@ -64,4 +64,6 @@ exclude:
     - Gemfile
     - Gemfile.lock
     - LICENSE
+    - about.md
     - README.md
+    - 404.html

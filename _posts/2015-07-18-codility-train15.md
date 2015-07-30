@@ -33,7 +33,42 @@ class Solution {
         }
         return dp[A.length-1];
     }
-}{% endhighlight %}
+}
+{% endhighlight %}
+
+
+And this is the C++ solution
+
+{% highlight c++ linenos %}
+#include <vector>
+#include <climits>
+#include <iostream>
+using namespace std;
+
+int solution(vector<int> &A) {
+	long dp[A.size()];
+	for (int i = 0; i < A.size(); i++) {
+		dp[i] = LONG_MIN;
+	}
+	dp[0] = A[0];
+	for (int i = 0; i < A.size(); i++) {
+		for (int j = 1; j <= 6; j++) {
+			if (i+j >= A.size())
+				break;
+			dp[i+j] = max(dp[i+j], dp[i] + A[i+j]);
+		}
+	}
+	
+	return dp[A.size()-1];
+    // write your code in C++11
+}
+
+int main() {
+	int vals[] = {1, -2, 0, 9, -1, -2};
+	vector<int> A(vals, vals+sizeof(vals)/sizeof(int));
+	cout<<solution(A);
+}
+{% endhighlight %}
 
 ### Exercise 2: [MinAbsSum](https://codility.com/demo/take-sample-test/min_abs_sum/) (Difficult)
 

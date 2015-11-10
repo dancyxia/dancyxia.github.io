@@ -7,7 +7,41 @@ tags: [linuxdev]
 
 ### Use gperftool
 
-gperftool is used by google for memory 
+perftool is used by google for heap profiling and CPU profiling. I only use its heap check function to detect the memory leak. 
+
+Step 1: build perftool
+---------------------------------
+prerequisite:
+
+Use apt-get install autoconf and libtool
+
+If you are using a 64-bit box, make sure to install [libunwind](http://download.savannah.gnu.org/releases/libunwind/libunwind-0.99-beta.tar.gz) before the build. This is to replace the glibc built-in stack unwinder, which might cause the deadlock.
+
+Build by following this process:
+
+./configure CC=c89 CFLAGS=-O2 LIBS=-lposix
+make
+make check
+make install
+
+
+Step 2: Configure your Makefile
+--------------------------------------
+
+put libtcmalloc and libprofiler to  LDFLAGS as follows:
+
+LDFLAGS = -L/usr/local/lib  -ltcmalloc -lprofiler
+
+
+Step 3: Run the application
+--------------------------------------
+run the application test by adding HEAPCHECK=minimal/normal...
+
+HEAPCHECK=normal ./test
+
+If there's a leak, use following command to find more information about the leaks
+
+pprof ./test "/tmp/test.30247._main_-end.heap" --inuse_objects --lines --heapcheck --edgefraction=1e-10 --nodefraction=1e-10 --text
 
 
 ### Use Valgrind

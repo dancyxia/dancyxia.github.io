@@ -8,8 +8,6 @@ tags: [linuxdev]
 ### Use gperftool
 
 perftool is used by google for heap profiling and CPU profiling. I only use its heap check function to detect the memory leak. 
-<<<<<<< HEAD
-=======
 
 Step 1: build perftool
 ---------------------------------

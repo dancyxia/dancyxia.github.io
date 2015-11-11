@@ -5,13 +5,13 @@ category: linux-dev
 tags: [linuxdev]
 ---
 
-### Use gperftool
+## Use gperftool
 
 perftool is used by google for heap profiling and CPU profiling. I only use its heap check function to detect the memory leak. 
 
-Step 1: build perftool
+#### Step 1: build perftool
 ---------------------------------
-prerequisite:
+**prerequisite**:
 
 Use apt-get install autoconf and libtool
 
@@ -25,7 +25,7 @@ make check
 make install
 
 
-Step 2: Configure your Makefile
+### Step 2: Configure your Makefile
 --------------------------------------
 
 put libtcmalloc and libprofiler to  LDFLAGS as follows:
@@ -33,55 +33,23 @@ put libtcmalloc and libprofiler to  LDFLAGS as follows:
 LDFLAGS = -L/usr/local/lib  -ltcmalloc -lprofiler
 
 
-Step 3: Run the application
+### Step 3: Run the application
 --------------------------------------
 run the application test by adding HEAPCHECK=minimal/normal...
 
+{%   highlight text    %}
 HEAPCHECK=normal ./test
+{%    endhighlight     %}
 
 If there's a leak, use following command to find more information about the leaks
 
+<div>
 pprof ./test "/tmp/test.30247._main_-end.heap" --inuse_objects --lines --heapcheck --edgefraction=1e-10 --nodefraction=1e-10 --text
-
-Step 1: build perftool
----------------------------------
-prerequisite:
-
-Use apt-get install autoconf and libtool
-
-If you are using a 64-bit box, make sure to install [libunwind](http://download.savannah.gnu.org/releases/libunwind/libunwind-0.99-beta.tar.gz) before the build. This is to replace the glibc built-in stack unwinder, which might cause the deadlock.
-
-Build by following this process:
-
-./configure CC=c89 CFLAGS=-O2 LIBS=-lposix
-make
-make check
-make install
-
-
-Step 2: Configure your Makefile
---------------------------------------
-
-put libtcmalloc and libprofiler to  LDFLAGS as follows:
-
-LDFLAGS = -L/usr/local/lib  -ltcmalloc -lprofiler
-
-
-Step 3: Run the application
---------------------------------------
-run the application test by adding HEAPCHECK=minimal/normal...
-
-HEAPCHECK=normal ./test
-
-If there's a leak, use following command to find more information about the leaks
-
-pprof ./test "/tmp/test.30247._main_-end.heap" --inuse_objects --lines --heapcheck --edgefraction=1e-10 --nodefraction=1e-10 --text
-
+</div>
 
 For example, we want to find out if this code with regards to the json manipulation has any memory leak issue. 
 
-{% highlight c linenos %}
-
+{%  highlight c linenos  %}
 
 #include <glib.h>
 #include <stdlib.h>
@@ -103,7 +71,9 @@ int main()
 }
 {% endhighlight %}
 
-{% highlight %}
+And this is the output:
+
+{% highlight text %}
 
 Leak check _main_ detected leaks of 996 bytes in 16 objects
 The 16 largest leaks:
@@ -129,6 +99,7 @@ Leak of 88 bytes in 1 objects allocated from:
 
 Following is the output after running pprof. 
 
+{%    highlight text          %}
 Using local file ./test_json.
 Using local file /tmp/test_json.30247._main_-end.heap.
 Total: 2 objects
@@ -139,15 +110,20 @@ Total: 2 objects
        0   0.0% 100.0%        1  50.0% json_escape_str /memory/json/json_object.c:98
        0   0.0% 100.0%        2 100.0% register_tm_clones crtstuff.c:0
 
+{%     endhighlight      %}
+
 ### Use Valgrind
 Valgrind is another very useful tool. Not like tcmalloc, you don't need to include any library. Valgrind just make your application run within its own run env. So all you need is just to install Valgrind. 
 
 To make it detect the leak, just run this:
 
+<div>
 valgrind --leak-check=full ./test_json
+</div>
 
 And this is the output
 
+{%     highlight text     %}
 
 ==32724== Memcheck, a memory error detector
 ==32724== Copyright (C) 2002-2011, and GNU GPL'd, by Julian Seward et al.
@@ -175,3 +151,4 @@ And this is the output
 ==32724== For counts of detected and suppressed errors, rerun with: -v
 ==32724== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 4 from 4)
 
+{%          endhighlight           %}

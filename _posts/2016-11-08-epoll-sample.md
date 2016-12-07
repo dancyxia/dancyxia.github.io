@@ -1,23 +1,25 @@
 ---
 layout: post
 title: Single thread TCP server by using linux's epoll facility
-category: linux-network
-tags: [linux epoll socket]
+category: linux-dev
+tags: [linux epoll network]
 ---
 
 ### TCP server
 
 As a TCP server, it implements at least following functions:
+
 1. It can accept connections from multiple clients
-2. It can handle data passed from clients and return corresponding data to the clients.
+
+2. It can handle data passed from clients and return corresponding data to the clients
 
 To set up connections and do the communication, socket goes to the play. In network programming, a socket is like a file handler, just instead of representing a file, it represents a pairing endpoint in the network. When writing or reading from a socket, the data are passed to or from this paring endpoint. 
 One server can have thousands of connections. How to manage such huge number of connections? Have a thread or process for each connection? It's not an ideal solution as effort to manage shared resources is challenging. Linux offered a notification facility called epoll which enables to manage the multiple connections in one thread.
 
 ### socket
-For a TCP server, socket set consists of functions socket(), bind() and accept(). See the following code for how to use them
+For a TCP server, socket set consists of functions socket(), bind() and accept(). See the following code for how to use them.
 
-```c
+{%  highlight c linenos  %}
 int setup_server_socket(char *port)
 {
     struct addrinfo hints;
@@ -120,17 +122,17 @@ error_out:
     close(infd);
 }
 
-```
+{% endhighlight %}
 
 ### EPOLL 
 epoll set consists of three system call. epoll_create, epoll_ctl and epoll_wait.
 
 #### epoll_create and epoll_create1
 
-```c
+{%  highlight c linenos  %}
 #include <sys/epoll.h>
 int epoll_create(int size);int epoll_create1(int flags);
-```
+{% endhighlight %}
 
 epoll_create() or epoll_create1() is to create and return a file descriptor referring to the created epoll instance. It serves as the epoll interface for subsequent epoll calls. epoll_create was added to the kernel in version 2.6. epoll_create1() was added to the kernel in version 2.6.27. The size parameter for epoll_create() is original designed as the initial number of the file descriptors to be added to the epoll instance. As the design change, now this value is no longer used. However, to be back compatible, the value needs to be greater than 0.
 
@@ -141,11 +143,11 @@ the fd created by epoll_create must be closed with close(fd) to release the allo
 
 #### epoll_ctl
 
-```c
+{%  highlight c linenos  %}
 #include <sys/epoll.h>
 
 int epoll_ctl(int epfd, int op, int fd, struct epoll_event *event);
-```
+{% endhighlight %}
 
 funciton epoll_ctl() is used to control epoll operations. 
 
@@ -154,7 +156,7 @@ The second argument specify the epoll operation. The valid operations are EPOLL_
 The third argument is the file descriptor to be worked on. The event argument describes the object linked to the file descriptor fd. 
 The struct epoll_event is defined as 
 
-```c
+{%  highlight c linenos  %}
 typedef union epoll_data {
     void        *ptr;
     int          fd;
@@ -166,13 +168,13 @@ struct epoll_event {
     uint32_t     events;      /* Epoll events */
     epoll_data_t data;        /* User data variable */
 };
-```
+{% endhighlight %}
 
 The events member is a bit set composition. The example only handle events EPOLLIN, EPOLLET and EPOLLRDHUP
 
 #### epoll_wait
 
-```c
+{%  highlight c linenos  %}
 #include <sys/epoll.h>
 
 int epoll_wait(int epfd, struct epoll_event *events,
@@ -180,160 +182,73 @@ int epoll_wait(int epfd, struct epoll_event *events,
 int epoll_pwait(int epfd, struct epoll_event *events,
                int maxevents, int timeout,
                const sigset_t *sigmask);
-```
+{% endhighlight %}
+
 The function epoll_wait and epoll_pwait waits for events on the epoll(7) instance referred to by the file descriptor epfd. The memory events pointer point to stores the events information. The argument maxevents must be greater than 0. Argument timeout specifies the 
 minimum number of milliseconds that epoll_wait() will block. specifying it as -1 cause the epoll_wait() to block infinitely, while 0 makes the epoll_wait() to return immediately. 
 
-#### Setting entrance
+#### edge trigger or level trigger
 
-First, we add a menu item in the option menu as the configuration entrance. 
+By default, epoll event is distributed as level trigger. That is, as long as data is there, the epoll event is triggered. For instance, the peer sends 30 bytes to the server. If the server reads 10 bytes and return. Next time when epoll_wait() is called, the EPOLLIN event is triggered again. But in edge trigger mode, this is not the case. In edge trigger mode, only when the state is changed from not ready to ready, can the epoll event be triggered. For above example, after 10 bytes were read, calling epoll_wait() again can not be returned with EPOLLIN event. It might cause the infinite block. Therefore, for a ET epoll, all data should be read to make the next epoll_wait availabe.
 
-{% highlight text linenos %}
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools" tools:context=".MainActivity">
-    <item android:id="@+id/action_settings"
-        android:title="@string/action_settings"
-        android:icon="@drawable/ic_action"
-        android:orderInCategory="100"
-        app:showAsAction="ifRoom" />
-</menu>
+#### example
 
-{% endhighlight %}
-
-Please be noted that attribute showAsAction is in app scope other than android scope. This is because I imported the supporting library for low level(<API Level 11) android support. 
-
-#### Create preference.xml 
-
-We need to create a preference xml document to claim the preference information. This document should be placed at res/xml folder. Usually you have to create xml folder manually.
-
-{% highlight text linenos %}
-<?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-    <EditTextPreference
-        android:key="@string/pref_graphnodecount"
-        android:title="@string/graph_nodenum"
-        android:inputType="number"
-        android:defaultValue="5" />
-</PreferenceScreen>
-{% endhighlight %}
-
-Preference items are placed inside PreferenceScreen element. Attribute key is required for every preference item. Android provides various type of preference. The most common preferences are: CheckBoxPreference, ListPreference and EditTextPreference. If you have too many preferences, categorize them can provide more friendly experience to the user. 
-
-#### Create SettingFragment by extending PreferenceFragement and its containing activity
-Handler for the preference can be either PreferenceActivity or PreferenceFragment. It's encouraged to use PreferenceFragment if the target device is Adroid 3.0+.
-
-{% highlight java linenos %}
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        addPreferencesFromResource(R.xml.preferences);
-
-        PreferenceScreen ps = getPreferenceScreen();
-        for (int i = 0; i < ps.getPreferenceCount(); i++) {
-            Preference p = ps.getPreference(i);
-            initSummary(p);
+{%  highlight c linenos  %}
+ int main(int argc, char* argv[])
+ {
+        if (argc != 2) {
+            fprintf(stderr, "Usage: %s port\n", argv[0]);
+            exit(EXIT_FAILURE);
         }
 
-        Preference p = ps.findPreference(getResources().getString(R.string.pref_graphnodecount));
-        if (p != null) {
-            p.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-                @Override
-                public boolean onPreferenceChange(Preference preference, Object newValue) {
-                    String sVal = (String)newValue;
-                    StringBuilder sb = new StringBuilder();
-                    try {
-                        int val = Integer.parseInt(sVal);
-                        if (val < Graph.MINNODENUM || val > Graph.MAXNODENUM) {
-                            sb.append("The value should be in the scope of ").append(Graph.MINNODENUM).append(" and ").append(Graph.MAXNODENUM);
-                        }
-                    } catch (NumberFormatException e) {
-                        sb.append(e.getMessage()).append("\n");
-                    }
-                    if (sb.length() > 0) {
-                        new AlertDialog.Builder(getActivity()).setTitle("Error").setMessage(sb.toString()).setPositiveButton(android.R.string.ok, null).show();
-                        return false;
-                    }
-                    return true;
-                }
-            });
+        if ((efd = epoll_create1(EPOLL_CLOEXEC))==-1) {
+            fprintf(stderr, "epoll setup is failed \n");
+            exit(EXIT_FAILURE);
+        }
+        int socket = setup_server_socket(argv[1]);
+        if (!epoll_register(EPOLLIN|EPOLLRDHUP|EPOLLET, efd, socket)) {
+                fprintf(stderr, "add server socket to epoll is failed");
+                exit(EXIT_FAILURE);
+        }
+        prepare_welcome_msg();
+        int timeout = 0;
+        while(!to_quit) {
+            timeout = g_queue_is_empty(&in_queue) && g_queue_is_empty(&out_queue) ? 1000:0;
+            epoll_monitor(efd, socket, timeout);
+            handle_in_queue();
+            handle_out_queue();
+        }
+        close(socket);
+        close(efd);
+        close_queue();
+        printf("exit!\n");
+}
+
+int epoll_register(int events, int efd, int socket) {
+    struct epoll_event ev;
+    ev.events = events;
+    ev.data.fd = socket;
+    if (epoll_ctl(efd, EPOLL_CTL_ADD, socket, &ev) == -1) {
+        return 0;
+    }
+    return 1;
+}
+
+void epoll_monitor(int efd, int socket, int timeout) {
+    struct epoll_event events[EPOLL_MAXEVENTS];
+    int n = epoll_wait(efd, events, EPOLL_MAXEVENTS, timeout);
+    while (n-- > 0) {
+        if (events[n].events & EPOLLRDHUP) {
+            printf("peer socket is closed\n");
+            release_epoll(events[n].data.fd);
+        } else if (events[n].events & EPOLLIN) {
+            if (events[n].data.fd == socket) { //listening socket
+                printf("accept_connection");
+                accept_connection(socket, &register_epoll);
+            } else { //get data
+                accept_data(events[n].data.fd);
+            }
         }
     }
-{% endhighlight %}
-
-From above code snippet you can find the preference xml is linked through function addPreferencesFromResource(R.xml.preferences). This is different from what general activity or fragment does.
-
-#### Preference retrieval
-To retrieve the preference from SharedPreference, you can use following code.
-
-{%  highlight java linenos %}
-        int nodeSize = Integer.parseInt(PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString(getResources().getString(R.string.pref_graphnodecount), String.valueOf(Graph.DEFAULT_COUNT)));
-{% endhighlight %}
-
-Note: the sharedpreference is under the application context. All activities with the same application have the access to it. 
-
-#### Pass the value to preference setting
-Then after the application is started and the value is loaded to SharedPreference. How is the change passing to the preference fragment? The answer is straightforward: have fragment implement SharedPreferences.OnSharedPreferenceChangeListener. Here is the code.
-
-{% highlight java linenos %}
-    @Override
-    public void onResume() {
-        super.onResume();
-        getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        getPreferenceScreen().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(this);
-    }
-
-    @Override
-    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-        Preference p = findPreference(key);
-        if (p instanceof EditTextPreference) {
-            ((EditTextPreference)p).setSummary(((EditTextPreference) p).getText());
-        }
-    }
-{%   endhighlight  %}
-
-
-#### Validate the preference
-You can also validate a specific preference before the value is passed to SharedPreference
-
-{% highlight java linenos %}
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-
-	     ...
-		 ...
-        Preference p = ps.findPreference(getResources().getString(R.string.pref_graphnodecount));
-        if (p != null) {
-            p.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-                @Override
-                public boolean onPreferenceChange(Preference preference, Object newValue) {
-                    String sVal = (String)newValue;
-                    StringBuilder sb = new StringBuilder();
-                    try {
-                        int val = Integer.parseInt(sVal);
-                        if (val < Graph.MINNODENUM || val > Graph.MAXNODENUM) {
-                            sb.append("The value should be in the scope of ").append(Graph.MINNODENUM).append(" and ").append(Graph.MAXNODENUM);
-                        }
-                    } catch (NumberFormatException e) {
-                        sb.append(e.getMessage()).append("\n");
-                    }
-                    if (sb.length() > 0) {
-                        new AlertDialog.Builder(getActivity()).setTitle("Error").setMessage(sb.toString()).setPositiveButton(android.R.string.ok, null).show();
-                        return false;
-                    }
-                    return true;
-                }
-            });
-        }
-		
-		...
-		...
-    }
-
-{% endhighlight %}
-
-OK, now the configuration feature is ready. Next, we need to add feature to load/save the generated graph.
+}
+{%  endhighlight %}

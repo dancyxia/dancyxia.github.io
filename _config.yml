@@ -56,4 +56,4 @@ exclude:
     - LICENSE
     - README.md
 
-theme: jekyll-theme-cayman
+theme: jekyll-theme-time-machine

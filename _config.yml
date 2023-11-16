@@ -42,7 +42,7 @@ footer-links:
   twitter: swingseagull1
   
 # Use the following plug-ins
-gems:
+plugins:
   - jekyll-sitemap # Create a sitemap using the official Jekyll sitemap gem
   - jekyll-gist
 

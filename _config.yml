@@ -7,7 +7,7 @@
 
 # Setup
 title:               Dancy's open dev footsteps
-url:                 http://swingseagull.github.io/
+url:                 http://dancyxia.github.io/
 baseurl: 			 ""
 encoding:			 utf-8
 name: 				 Dancy Xia
@@ -15,7 +15,7 @@ avatar: 			 https://avatars.githubusercontent.com/u/5642994?v=3
 description: 		 I am happy as I have dream
 archive-link: /pages/2archive
 # Build settings
-github_username:  swingseagull
+github_username:  dancyxia
 highlighter: 		 pygments
 markdown: kramdown
 permalink: /:year/:month/:day/:title/
@@ -25,7 +25,7 @@ permalink: /:year/:month/:day/:title/
 #footer-links
 footer-links:
   linkedin: dancyxia
-  github: swingseagull
+  github: dancyxia
   twitter: swingseagull1
 
 # Assets
@@ -38,7 +38,7 @@ sass:
 #footer-links
 footer-links:
   linkedin: dancyxia
-  github: swingseagull
+  github: dancyxia
   twitter: swingseagull1
   
 # Use the following plug-ins

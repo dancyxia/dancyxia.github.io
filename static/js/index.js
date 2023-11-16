@@ -134,3 +134,4 @@ function generateContent() {
         $('#content .content-text').html('<ul>' + $('#markdown-toc').html() + '</ul>');
     }
 }
+
